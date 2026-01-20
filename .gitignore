@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Type checking / tooling
+.mypy_cache/
+.pytype/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Environment files (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+.vscode/
+.idea/
+
+# PyTorch / training artifacts
+checkpoints/
+artifacts/
+runs/
+lightning_logs/
+wandb/
+
+# TensorBoard
+**/events.out.tfevents.*
+
+# spaCy
+.spacy/
+
+# Hugging Face / transformers datasets caches
+.huggingface/
+cache/
+.hf_cache/
+
+# Common local data/output directories
+outputs/
+output/
+logs/
+
+# Docker
+**/.docker/
+
+# Local sqlite
+*.sqlite
+*.sqlite3
