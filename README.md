@@ -1,6 +1,6 @@
 # Large Language Model from Scratch
 
-A complete implementation of a transformer-based language model built from scratch using Python and PyTorch.
+A complete implementation of a transformer-based language model built from scratch using Python and PyTorch and associated model garden utilities. 
 
 ## Features
 
