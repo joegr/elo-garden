@@ -52,15 +52,10 @@ export function Header({
             </button>
           </nav>
 
-          {/* MLflow Link */}
-          <a
-            href="http://localhost:5000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all"
-          >
-            Open MLflow UI →
-          </a>
+          {/* Version */}
+          <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-xs font-mono border border-slate-700">
+            v0.4.0
+          </span>
         </div>
       </div>
     </header>

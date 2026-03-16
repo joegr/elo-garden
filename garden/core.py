@@ -10,6 +10,7 @@ from .tournament import Tournament, TournamentType, TournamentStatus
 from .season import Season, SeasonStatus
 from .leaderboard import Leaderboard
 from .elo import ELOSystem
+from .db import GardenDB
 
 
 class Garden:
@@ -18,7 +19,8 @@ class Garden:
         name: str = "Garden",
         elo_k_factor: int = 32,
         initial_rating: float = 1500,
-        data_dir: str = "garden_data"
+        data_dir: str = "garden_data",
+        db_path: Optional[str] = None
     ):
         self.name = name
         self.elo_system = ELOSystem(k_factor=elo_k_factor, initial_rating=initial_rating)
@@ -38,6 +40,104 @@ class Garden:
         self.created_at = datetime.now()
         
         os.makedirs(data_dir, exist_ok=True)
+        
+        # SQLite persistence — if db_path provided, auto-persist all mutations
+        self.db: Optional[GardenDB] = None
+        if db_path is not None:
+            self.db = GardenDB(db_path)
+            self._load_from_db()
+    
+    def _persist_model(self, model: Model):
+        """Persist a model to the DB if DB is enabled."""
+        if self.db:
+            self.db.save_model(
+                model_id=model.model_id,
+                name=model.name,
+                version=model.version,
+                metadata=model.metadata,
+                ratings=model.ratings,
+                stats=model.stats,
+                ontology=model.ontology.to_dict() if model.ontology else None,
+                match_history=model.match_history,
+                created_at=model.created_at.isoformat() if hasattr(model, 'created_at') and model.created_at else datetime.now().isoformat()
+            )
+    
+    def _persist_match(self, match: Match):
+        """Persist a match to the DB if DB is enabled."""
+        if self.db:
+            self.db.save_match(
+                match_id=match.match_id,
+                model_a_id=match.model_a_id,
+                model_b_id=match.model_b_id,
+                arena_id=match.arena_id,
+                status=match.status.value if hasattr(match.status, 'value') else str(match.status),
+                winner_id=match.result.winner_id if match.result else None,
+                scores=match.result.scores if match.result else {},
+                rating_changes=match.result.rating_changes if match.result else {},
+                tournament_id=match.tournament_id if hasattr(match, 'tournament_id') else None,
+                season_id=match.season_id if hasattr(match, 'season_id') else None,
+                started_at=match.started_at.isoformat() if hasattr(match, 'started_at') and match.started_at else None,
+                completed_at=match.completed_at.isoformat() if hasattr(match, 'completed_at') and match.completed_at else None,
+                created_at=match.created_at.isoformat() if hasattr(match, 'created_at') and match.created_at else datetime.now().isoformat()
+            )
+    
+    def _persist_arena(self, arena: Arena):
+        """Persist an arena to the DB if DB is enabled."""
+        if self.db:
+            self.db.save_arena(
+                arena_id=arena.arena_id,
+                name=arena.name,
+                description=arena.description,
+                arena_type=arena.__class__.__name__,
+                higher_is_better=getattr(arena, 'higher_is_better', True),
+                metadata=getattr(arena, 'metadata', {}) or {},
+                match_history=arena.match_history,
+                created_at=datetime.now().isoformat()
+            )
+    
+    def _load_from_db(self):
+        """Restore in-memory state from SQLite on startup."""
+        if not self.db:
+            return
+        
+        # Load models
+        for row in self.db.load_models():
+            from .ontology import ModelOntology
+            ontology = None
+            if row['ontology']:
+                try:
+                    ontology = ModelOntology.from_dict(row['ontology'])
+                except Exception:
+                    pass
+            model = Model(
+                name=row['name'],
+                model_id=row['model_id'],
+                version=row['version'],
+                metadata=row['metadata'],
+                ontology=ontology
+            )
+            model.ratings = row['ratings']
+            model.stats = row['stats']
+            model.match_history = row['match_history']
+            self.models[model.model_id] = model
+        
+        # Load matches (metadata only — the Match objects are lightweight)
+        for row in self.db.load_matches():
+            match = Match(
+                model_a_id=row['model_a_id'],
+                model_b_id=row['model_b_id'],
+                arena_id=row['arena_id'],
+                match_id=row['match_id']
+            )
+            match.status = MatchStatus(row['status']) if row['status'] in [s.value for s in MatchStatus] else MatchStatus.COMPLETED
+            if row['winner_id'] or row['scores']:
+                match.result = MatchResult(
+                    match_id=row['match_id'],
+                    winner_id=row['winner_id'],
+                    scores=row['scores'],
+                    rating_changes=row['rating_changes']
+                )
+            self.matches[match.match_id] = match
     
     def on_match_complete(self, callback: Callable[[Match], None]):
         """Register a callback that fires after every match completion."""
@@ -57,6 +157,7 @@ class Garden:
     ) -> Model:
         model = Model(name, model_id, version, metadata, ontology)
         self.models[model.model_id] = model
+        self._persist_model(model)
         for cb in self._on_model_registered:
             cb(model)
         return model
@@ -81,6 +182,7 @@ class Garden:
             higher_is_better=higher_is_better
         )
         self.arenas[arena.arena_id] = arena
+        self._persist_arena(arena)
         return arena
     
     def create_season(
@@ -232,6 +334,11 @@ class Garden:
             season.add_match(match.match_id)
             season.update_rating(arena_id, model_a_id, new_rating_a)
             season.update_rating(arena_id, model_b_id, new_rating_b)
+        
+        # Persist match result and updated model ratings
+        self._persist_match(match)
+        self._persist_model(model_a)
+        self._persist_model(model_b)
         
         # Fire event callbacks
         for cb in self._on_match_complete:

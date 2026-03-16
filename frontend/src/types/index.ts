@@ -39,14 +39,4 @@ export interface Match {
   rating_changes: Record<string, number>
 }
 
-export interface MLflowRun {
-  run_id: string
-  run_name: string
-  experiment_id: string
-  status: string
-  start_time: number
-  end_time: number | null
-  metrics: Record<string, number>
-  params: Record<string, string>
-  tags: Record<string, string>
-}
+

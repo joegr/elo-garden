@@ -12,7 +12,6 @@ from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
-import mlflow
 
 from garden import Garden, TournamentType
 from garden.ontology import ModelOntology, OntologyMatcher, IOSchema, DataType, TaskType
@@ -34,11 +33,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global Garden instance
+# Global Garden instance with SQLite persistence
 garden = Garden(
     name="API Garden",
-    enable_mlflow_tracking=True,
-    tracking_uri="./mlruns"
+    data_dir="garden_data",
+    db_path="garden_data/garden.db"
 )
 
 # Global ArenaQueue instance
@@ -135,11 +134,14 @@ class QueueMatchRequest(BaseModel):
 @app.get("/")
 async def root():
     """Health check"""
+    stats = garden.get_stats()
     return {
         "status": "healthy",
         "service": "Garden API",
-        "version": "0.3.0",
-        "mlflow_uri": garden.get_tracking_uri()
+        "version": "0.4.0",
+        "models": stats['total_models'],
+        "arenas": stats['total_arenas'],
+        "matches": stats['total_matches']
     }
 
 
@@ -463,9 +465,9 @@ async def create_match(match_data: MatchCreate, background_tasks: BackgroundTask
         model_a_id=match.model_a_id,
         model_b_id=match.model_b_id,
         arena_id=match.arena_id,
-        winner_id=match.winner_id,
-        scores=match.scores,
-        rating_changes=match.rating_changes
+        winner_id=match.result.winner_id if match.result else None,
+        scores=match.result.scores if match.result else {},
+        rating_changes=match.result.rating_changes if match.result else {}
     )
 
 
@@ -621,45 +623,6 @@ async def create_tournament(tournament_data: TournamentCreate):
         "status": tournament.status.value,
         "match_count": len(tournament.match_ids)
     }
-
-
-@app.get("/mlflow/experiments")
-async def list_mlflow_experiments():
-    """Get all MLflow experiments"""
-    experiments = mlflow.search_experiments()
-    return [
-        {
-            "experiment_id": exp.experiment_id,
-            "name": exp.name,
-            "artifact_location": exp.artifact_location,
-            "lifecycle_stage": exp.lifecycle_stage
-        }
-        for exp in experiments
-    ]
-
-
-@app.get("/mlflow/runs")
-async def list_mlflow_runs(experiment_id: Optional[str] = None):
-    """Get MLflow runs"""
-    runs = mlflow.search_runs(
-        experiment_ids=[experiment_id] if experiment_id else None,
-        output_format="list"
-    )
-    
-    return [
-        {
-            "run_id": run.info.run_id,
-            "run_name": run.info.run_name,
-            "experiment_id": run.info.experiment_id,
-            "status": run.info.status,
-            "start_time": run.info.start_time,
-            "end_time": run.info.end_time,
-            "metrics": {k: v[-1].value if v else None for k, v in run.data.metrics.items()},
-            "params": run.data.params,
-            "tags": run.data.tags
-        }
-        for run in runs[:100]  # Limit to 100 most recent
-    ]
 
 
 @app.get("/stats")

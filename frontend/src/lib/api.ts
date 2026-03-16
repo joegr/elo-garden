@@ -1,7 +1,7 @@
 import axios from 'axios'
-import type { Model, Arena, Match, MLflowRun } from '../types'
+import type { Model, Arena, Match } from '../types'
 
-const API_BASE = 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
 const client = axios.create({
   baseURL: API_BASE,
@@ -46,17 +46,6 @@ export const api = {
   // Matches
   createMatch: async (match: { model_a_id: string; model_b_id: string; arena_id: string }): Promise<Match> => {
     const { data} = await client.post('/matches', match)
-    return data
-  },
-
-  // MLflow Integration
-  getRuns: async (): Promise<MLflowRun[]> => {
-    const { data } = await client.get('/mlflow/runs')
-    return data
-  },
-
-  getExperiments: async () => {
-    const { data } = await client.get('/mlflow/experiments')
     return data
   },
 
