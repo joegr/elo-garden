@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Garden data
+garden_data/
+*.json
+
+# Tests
+test_*.py
+*_test.py
+tests/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+*.md
+docs/
+
+# Frontend
+frontend/
+node_modules/
+
+# Model artifacts
+*.pth
+*.pt
+*.ckpt
+checkpoints/
+outputs/
+logs/
+data/
+
+# Spacy and HuggingFace caches
+.spacy/
+.cache/

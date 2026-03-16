@@ -6,8 +6,11 @@ from .tournament import Tournament, TournamentType
 from .season import Season
 from .leaderboard import Leaderboard
 from .elo import ELOSystem
+from . import tracking
+from . import metrics
+from . import ontology
 
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 __all__ = [
     "Garden",
     "Model",
@@ -20,4 +23,7 @@ __all__ = [
     "Season",
     "Leaderboard",
     "ELOSystem",
+    "tracking",
+    "metrics",
+    "ontology",
 ]

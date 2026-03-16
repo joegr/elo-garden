@@ -1,0 +1,493 @@
+{
+  "name": "MLflow Garden",
+  "created_at": "2026-03-15T12:28:01.838202",
+  "models": {
+    "03d1a9b2-2c09-453e-8060-eb451adff0d6": {
+      "model_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "name": "GPT-Mini",
+      "version": "1.0",
+      "metadata": {
+        "architecture": "transformer",
+        "params": "294M"
+      },
+      "created_at": "2026-03-15T12:28:01.838453",
+      "ratings": {
+        "0f1a9666-5936-4043-95b9-99cf1974da0f": 1509.91715977048
+      },
+      "stats": {
+        "total_matches": 5,
+        "wins": 3,
+        "losses": 2,
+        "draws": 0,
+        "win_rate": 0.6
+      },
+      "match_history": [
+        "2a2eab0d-440b-43c0-b896-152af8eb2bea",
+        "f417cc0c-50c4-4518-bb77-3a02d7b97f21",
+        "c6c48181-4c35-4362-85b7-d1eeddf8f787",
+        "df90136e-bb51-48db-a36d-a0cfdc8bf7d2",
+        "950506b4-bf5d-4b3b-b3ae-c26ffb709398"
+      ]
+    },
+    "8ac208be-3bd3-414b-a65c-11c9d8e13648": {
+      "model_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+      "name": "BERT-Tiny",
+      "version": "1.0",
+      "metadata": {
+        "architecture": "transformer",
+        "params": "29M"
+      },
+      "created_at": "2026-03-15T12:28:01.838462",
+      "ratings": {
+        "0f1a9666-5936-4043-95b9-99cf1974da0f": 1526.7076719031402
+      },
+      "stats": {
+        "total_matches": 4,
+        "wins": 3,
+        "losses": 1,
+        "draws": 0,
+        "win_rate": 0.75
+      },
+      "match_history": [
+        "78299576-d1d0-46a8-94ee-dcf2d239452c",
+        "c6c48181-4c35-4362-85b7-d1eeddf8f787",
+        "3ebfe0c1-d00c-49d0-b126-a041e3575496",
+        "661efc8f-ca7a-4d06-9607-c4619fd5ef67"
+      ]
+    },
+    "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": {
+      "model_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "name": "T5-Small",
+      "version": "1.0",
+      "metadata": {
+        "architecture": "transformer",
+        "params": "477M"
+      },
+      "created_at": "2026-03-15T12:28:01.838469",
+      "ratings": {
+        "0f1a9666-5936-4043-95b9-99cf1974da0f": 1406.6136873480116
+      },
+      "stats": {
+        "total_matches": 7,
+        "wins": 0,
+        "losses": 7,
+        "draws": 0,
+        "win_rate": 0.0
+      },
+      "match_history": [
+        "182c8023-66d2-4367-bac3-85e304cbfec8",
+        "78299576-d1d0-46a8-94ee-dcf2d239452c",
+        "f417cc0c-50c4-4518-bb77-3a02d7b97f21",
+        "aff91878-9577-487b-8be5-18c1b759c97f",
+        "df90136e-bb51-48db-a36d-a0cfdc8bf7d2",
+        "3ebfe0c1-d00c-49d0-b126-a041e3575496",
+        "44deb817-e7a4-49a4-9b30-bba915c1f7e4"
+      ]
+    },
+    "eb56930c-50c7-47d2-ab54-04910a5226de": {
+      "model_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "name": "RoBERTa-Base",
+      "version": "1.0",
+      "metadata": {
+        "architecture": "transformer",
+        "params": "395M"
+      },
+      "created_at": "2026-03-15T12:28:01.838474",
+      "ratings": {
+        "0f1a9666-5936-4043-95b9-99cf1974da0f": 1556.7614809783681
+      },
+      "stats": {
+        "total_matches": 6,
+        "wins": 5,
+        "losses": 1,
+        "draws": 0,
+        "win_rate": 0.8333333333333334
+      },
+      "match_history": [
+        "182c8023-66d2-4367-bac3-85e304cbfec8",
+        "2a2eab0d-440b-43c0-b896-152af8eb2bea",
+        "aff91878-9577-487b-8be5-18c1b759c97f",
+        "950506b4-bf5d-4b3b-b3ae-c26ffb709398",
+        "661efc8f-ca7a-4d06-9607-c4619fd5ef67",
+        "44deb817-e7a4-49a4-9b30-bba915c1f7e4"
+      ]
+    }
+  },
+  "arenas": {
+    "0f1a9666-5936-4043-95b9-99cf1974da0f": {
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "name": "Accuracy Arena",
+      "description": "Measures model accuracy",
+      "metadata": {},
+      "created_at": "2026-03-15T12:28:01.838483",
+      "total_matches": 11
+    },
+    "03fa70fe-54c7-4ba6-9b8f-97f1d61c2fd6": {
+      "arena_id": "03fa70fe-54c7-4ba6-9b8f-97f1d61c2fd6",
+      "name": "Latency Arena",
+      "description": "Measures inference latency (lower is better)",
+      "metadata": {},
+      "created_at": "2026-03-15T12:28:01.838488",
+      "total_matches": 0
+    }
+  },
+  "matches": {
+    "182c8023-66d2-4367-bac3-85e304cbfec8": {
+      "match_id": "182c8023-66d2-4367-bac3-85e304cbfec8",
+      "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "182c8023-66d2-4367-bac3-85e304cbfec8",
+        "winner_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+        "scores": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7452736857114212,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.7864159147346981
+        },
+        "rating_changes": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -16.0,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 16.0
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.838572"
+      },
+      "created_at": "2026-03-15T12:28:01.838502",
+      "started_at": "2026-03-15T12:28:01.838503",
+      "completed_at": "2026-03-15T12:28:01.838573",
+      "metadata": {}
+    },
+    "78299576-d1d0-46a8-94ee-dcf2d239452c": {
+      "match_id": "78299576-d1d0-46a8-94ee-dcf2d239452c",
+      "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+      "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "78299576-d1d0-46a8-94ee-dcf2d239452c",
+        "winner_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+        "scores": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 0.7665259782892002,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7443172178664695
+        },
+        "rating_changes": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 15.26369320647791,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -15.26369320647791
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.838627"
+      },
+      "created_at": "2026-03-15T12:28:01.838612",
+      "started_at": "2026-03-15T12:28:01.838613",
+      "completed_at": "2026-03-15T12:28:01.838628",
+      "metadata": {}
+    },
+    "2a2eab0d-440b-43c0-b896-152af8eb2bea": {
+      "match_id": "2a2eab0d-440b-43c0-b896-152af8eb2bea",
+      "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "2a2eab0d-440b-43c0-b896-152af8eb2bea",
+        "winner_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+        "scores": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 0.7485749358261009,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.7389048045327298
+        },
+        "rating_changes": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 16.73630679352209,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": -16.73630679352209
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.838662"
+      },
+      "created_at": "2026-03-15T12:28:01.838653",
+      "started_at": "2026-03-15T12:28:01.838653",
+      "completed_at": "2026-03-15T12:28:01.838663",
+      "metadata": {}
+    },
+    "f417cc0c-50c4-4518-bb77-3a02d7b97f21": {
+      "match_id": "f417cc0c-50c4-4518-bb77-3a02d7b97f21",
+      "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "f417cc0c-50c4-4518-bb77-3a02d7b97f21",
+        "winner_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+        "scores": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 0.7432732719585833,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7133284022138568
+        },
+        "rating_changes": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 13.803475459722677,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -13.803475459722677
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.838692"
+      },
+      "created_at": "2026-03-15T12:28:01.838684",
+      "started_at": "2026-03-15T12:28:01.838685",
+      "completed_at": "2026-03-15T12:28:01.838692",
+      "metadata": {}
+    },
+    "aff91878-9577-487b-8be5-18c1b759c97f": {
+      "match_id": "aff91878-9577-487b-8be5-18c1b759c97f",
+      "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "aff91878-9577-487b-8be5-18c1b759c97f",
+        "winner_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+        "scores": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7495471207954064,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.8153672132935572
+        },
+        "rating_changes": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -13.96949553290142,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 13.96949553290142
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.838719"
+      },
+      "created_at": "2026-03-15T12:28:01.838713",
+      "started_at": "2026-03-15T12:28:01.838713",
+      "completed_at": "2026-03-15T12:28:01.838720",
+      "metadata": {}
+    },
+    "c6c48181-4c35-4362-85b7-d1eeddf8f787": {
+      "match_id": "c6c48181-4c35-4362-85b7-d1eeddf8f787",
+      "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "model_b_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "c6c48181-4c35-4362-85b7-d1eeddf8f787",
+        "winner_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+        "scores": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 0.7983415581534481,
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 0.8051859180537708
+        },
+        "rating_changes": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": -16.703036920815748,
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 16.703036920815748
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.840943"
+      },
+      "created_at": "2026-03-15T12:28:01.840867",
+      "started_at": "2026-03-15T12:28:01.840868",
+      "completed_at": "2026-03-15T12:28:01.840943",
+      "metadata": {}
+    },
+    "df90136e-bb51-48db-a36d-a0cfdc8bf7d2": {
+      "match_id": "df90136e-bb51-48db-a36d-a0cfdc8bf7d2",
+      "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "df90136e-bb51-48db-a36d-a0cfdc8bf7d2",
+        "winner_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+        "scores": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 0.763369168147281,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7494076127413838
+        },
+        "rating_changes": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 12.692417962006175,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -12.692417962006175
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.840975"
+      },
+      "created_at": "2026-03-15T12:28:01.840965",
+      "started_at": "2026-03-15T12:28:01.840966",
+      "completed_at": "2026-03-15T12:28:01.840975",
+      "metadata": {}
+    },
+    "950506b4-bf5d-4b3b-b3ae-c26ffb709398": {
+      "match_id": "950506b4-bf5d-4b3b-b3ae-c26ffb709398",
+      "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "950506b4-bf5d-4b3b-b3ae-c26ffb709398",
+        "winner_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+        "scores": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": 0.7424592080520607,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.7444286309022441
+        },
+        "rating_changes": {
+          "03d1a9b2-2c09-453e-8060-eb451adff0d6": -16.61200352395508,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 16.61200352395508
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.841002"
+      },
+      "created_at": "2026-03-15T12:28:01.840993",
+      "started_at": "2026-03-15T12:28:01.840994",
+      "completed_at": "2026-03-15T12:28:01.841002",
+      "metadata": {}
+    },
+    "3ebfe0c1-d00c-49d0-b126-a041e3575496": {
+      "match_id": "3ebfe0c1-d00c-49d0-b126-a041e3575496",
+      "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+      "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "3ebfe0c1-d00c-49d0-b126-a041e3575496",
+        "winner_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+        "scores": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 0.7953580438823095,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7024111789919169
+        },
+        "rating_changes": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 11.36154937197557,
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -11.36154937197557
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.841024"
+      },
+      "created_at": "2026-03-15T12:28:01.841017",
+      "started_at": "2026-03-15T12:28:01.841018",
+      "completed_at": "2026-03-15T12:28:01.841024",
+      "metadata": {}
+    },
+    "661efc8f-ca7a-4d06-9607-c4619fd5ef67": {
+      "match_id": "661efc8f-ca7a-4d06-9607-c4619fd5ef67",
+      "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "661efc8f-ca7a-4d06-9607-c4619fd5ef67",
+        "winner_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+        "scores": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": 0.7538789089040002,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.8058983482089361
+        },
+        "rating_changes": {
+          "8ac208be-3bd3-414b-a65c-11c9d8e13648": -16.620607596129048,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 16.620607596129048
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.841045"
+      },
+      "created_at": "2026-03-15T12:28:01.841038",
+      "started_at": "2026-03-15T12:28:01.841038",
+      "completed_at": "2026-03-15T12:28:01.841045",
+      "metadata": {}
+    },
+    "44deb817-e7a4-49a4-9b30-bba915c1f7e4": {
+      "match_id": "44deb817-e7a4-49a4-9b30-bba915c1f7e4",
+      "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+      "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "44deb817-e7a4-49a4-9b30-bba915c1f7e4",
+        "winner_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+        "scores": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": 0.7547712769999608,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 0.7984785267610748
+        },
+        "rating_changes": {
+          "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": -10.295681118904668,
+          "eb56930c-50c7-47d2-ab54-04910a5226de": 10.295681118904668
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T12:28:01.841065"
+      },
+      "created_at": "2026-03-15T12:28:01.841059",
+      "started_at": "2026-03-15T12:28:01.841060",
+      "completed_at": "2026-03-15T12:28:01.841065",
+      "metadata": {}
+    }
+  },
+  "tournaments": {
+    "cc62e85a-091d-49af-8472-c9e019ca4aec": {
+      "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+      "name": "Championship",
+      "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+      "model_ids": [
+        "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+        "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+        "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+        "eb56930c-50c7-47d2-ab54-04910a5226de"
+      ],
+      "tournament_type": "round_robin",
+      "season_id": null,
+      "status": "completed",
+      "match_ids": [
+        "c6c48181-4c35-4362-85b7-d1eeddf8f787",
+        "df90136e-bb51-48db-a36d-a0cfdc8bf7d2",
+        "950506b4-bf5d-4b3b-b3ae-c26ffb709398",
+        "3ebfe0c1-d00c-49d0-b126-a041e3575496",
+        "661efc8f-ca7a-4d06-9607-c4619fd5ef67",
+        "44deb817-e7a4-49a4-9b30-bba915c1f7e4"
+      ],
+      "standings": {
+        "03d1a9b2-2c09-453e-8060-eb451adff0d6": {
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "points": 3,
+          "matches_played": 3
+        },
+        "8ac208be-3bd3-414b-a65c-11c9d8e13648": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "points": 6,
+          "matches_played": 3
+        },
+        "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "points": 0,
+          "matches_played": 3
+        },
+        "eb56930c-50c7-47d2-ab54-04910a5226de": {
+          "wins": 3,
+          "losses": 0,
+          "draws": 0,
+          "points": 9,
+          "matches_played": 3
+        }
+      },
+      "created_at": "2026-03-15T12:28:01.840855",
+      "started_at": "2026-03-15T12:28:01.840859",
+      "completed_at": "2026-03-15T12:28:01.841077",
+      "metadata": {}
+    }
+  },
+  "seasons": {},
+  "leaderboards": {}
+}

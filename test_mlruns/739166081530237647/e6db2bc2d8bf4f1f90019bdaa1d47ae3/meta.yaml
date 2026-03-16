@@ -1,0 +1,14 @@
+artifact_uri: /Users/jg/mind/test_mlruns/739166081530237647/e6db2bc2d8bf4f1f90019bdaa1d47ae3/artifacts
+end_time: 1773599399581
+entry_point_name: ''
+experiment_id: '739166081530237647'
+lifecycle_stage: active
+run_id: e6db2bc2d8bf4f1f90019bdaa1d47ae3
+run_name: test_run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1773599399573
+status: 3
+tags: []
+user_id: jg

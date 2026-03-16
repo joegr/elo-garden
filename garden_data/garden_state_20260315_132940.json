@@ -1,0 +1,88 @@
+{
+  "name": "Test Garden",
+  "created_at": "2026-03-15T13:29:40.784456",
+  "models": {
+    "82b85e82-37c4-4108-898d-5bcc6d8e331d": {
+      "model_id": "82b85e82-37c4-4108-898d-5bcc6d8e331d",
+      "name": "Model-A",
+      "version": "1.0",
+      "metadata": {},
+      "created_at": "2026-03-15T13:29:40.887803",
+      "ratings": {
+        "58986199-38ea-4c7d-ab90-16583afe7a74": 1516.0
+      },
+      "stats": {
+        "total_matches": 1,
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "win_rate": 1.0
+      },
+      "match_history": [
+        "b50d5940-628f-42b6-b6cb-a2d5d0964cea"
+      ]
+    },
+    "e9eb5029-6c31-4581-8cbf-6bf26164eef6": {
+      "model_id": "e9eb5029-6c31-4581-8cbf-6bf26164eef6",
+      "name": "Model-B",
+      "version": "1.0",
+      "metadata": {},
+      "created_at": "2026-03-15T13:29:40.887816",
+      "ratings": {
+        "58986199-38ea-4c7d-ab90-16583afe7a74": 1484.0
+      },
+      "stats": {
+        "total_matches": 1,
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "win_rate": 0.0
+      },
+      "match_history": [
+        "b50d5940-628f-42b6-b6cb-a2d5d0964cea"
+      ]
+    }
+  },
+  "arenas": {
+    "58986199-38ea-4c7d-ab90-16583afe7a74": {
+      "arena_id": "58986199-38ea-4c7d-ab90-16583afe7a74",
+      "name": "Test Arena",
+      "description": "",
+      "metadata": {},
+      "created_at": "2026-03-15T13:29:40.887827",
+      "total_matches": 1
+    }
+  },
+  "matches": {
+    "b50d5940-628f-42b6-b6cb-a2d5d0964cea": {
+      "match_id": "b50d5940-628f-42b6-b6cb-a2d5d0964cea",
+      "model_a_id": "82b85e82-37c4-4108-898d-5bcc6d8e331d",
+      "model_b_id": "e9eb5029-6c31-4581-8cbf-6bf26164eef6",
+      "arena_id": "58986199-38ea-4c7d-ab90-16583afe7a74",
+      "tournament_id": null,
+      "season_id": null,
+      "status": "completed",
+      "result": {
+        "match_id": "b50d5940-628f-42b6-b6cb-a2d5d0964cea",
+        "winner_id": "82b85e82-37c4-4108-898d-5bcc6d8e331d",
+        "scores": {
+          "82b85e82-37c4-4108-898d-5bcc6d8e331d": 0.7666665529469362,
+          "e9eb5029-6c31-4581-8cbf-6bf26164eef6": 0.7145404212548258
+        },
+        "rating_changes": {
+          "82b85e82-37c4-4108-898d-5bcc6d8e331d": 16.0,
+          "e9eb5029-6c31-4581-8cbf-6bf26164eef6": -16.0
+        },
+        "metadata": {},
+        "timestamp": "2026-03-15T13:29:40.894347"
+      },
+      "created_at": "2026-03-15T13:29:40.887849",
+      "started_at": "2026-03-15T13:29:40.887850",
+      "completed_at": "2026-03-15T13:29:40.894350",
+      "metadata": {}
+    }
+  },
+  "tournaments": {},
+  "seasons": {},
+  "leaderboards": {}
+}

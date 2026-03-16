@@ -1,0 +1,994 @@
+{
+  "tracking_uri": "./garden_mlruns",
+  "experiments": {
+    "0": {
+      "experiment_id": "0",
+      "name": "Default",
+      "artifact_location": "./garden_mlruns/0",
+      "tags": {},
+      "creation_time": "2026-03-15T12:28:01.838337",
+      "lifecycle_stage": "active"
+    },
+    "26e11422-dc55-4fbe-b3d9-ee7874cb18c1": {
+      "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+      "name": "arena_Accuracy Arena",
+      "artifact_location": "./garden_mlruns/26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+      "tags": {},
+      "creation_time": "2026-03-15T12:28:01.838507",
+      "lifecycle_stage": "active"
+    },
+    "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3": {
+      "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+      "name": "tournament_Championship",
+      "artifact_location": "./garden_mlruns/90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+      "tags": {},
+      "creation_time": "2026-03-15T12:28:01.840873",
+      "lifecycle_stage": "active"
+    }
+  },
+  "runs": {
+    "2292ce73-1aa4-46b4-9e0c-05d1a35066cf": {
+      "info": {
+        "run_id": "2292ce73-1aa4-46b4-9e0c-05d1a35066cf",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "match_182c8023",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838552",
+        "end_time": "2026-03-15T12:28:01.838595",
+        "artifact_uri": "artifacts/2292ce73-1aa4-46b4-9e0c-05d1a35066cf"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "T5-Small",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": null,
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7452736857114212,
+              "timestamp": "2026-03-15T12:28:01.838580",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7864159147346981,
+              "timestamp": "2026-03-15T12:28:01.838585",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1500,
+              "timestamp": "2026-03-15T12:28:01.838587",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1500,
+              "timestamp": "2026-03-15T12:28:01.838588",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1484.0,
+              "timestamp": "2026-03-15T12:28:01.838589",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1516.0,
+              "timestamp": "2026-03-15T12:28:01.838590",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -16.0,
+              "timestamp": "2026-03-15T12:28:01.838591",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 16.0,
+              "timestamp": "2026-03-15T12:28:01.838592",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "match_type": "standalone",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "73aa7246-1efe-4d1b-bbd1-5dae729bca1e": {
+      "info": {
+        "run_id": "73aa7246-1efe-4d1b-bbd1-5dae729bca1e",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "match_78299576",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838618",
+        "end_time": "2026-03-15T12:28:01.838641",
+        "artifact_uri": "artifacts/73aa7246-1efe-4d1b-bbd1-5dae729bca1e"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "BERT-Tiny",
+          "model_b_name": "T5-Small",
+          "tournament_id": null,
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7665259782892002,
+              "timestamp": "2026-03-15T12:28:01.838632",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7443172178664695,
+              "timestamp": "2026-03-15T12:28:01.838633",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1500,
+              "timestamp": "2026-03-15T12:28:01.838634",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1484.0,
+              "timestamp": "2026-03-15T12:28:01.838635",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1515.263693206478,
+              "timestamp": "2026-03-15T12:28:01.838636",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1468.736306793522,
+              "timestamp": "2026-03-15T12:28:01.838637",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": 15.26369320647791,
+              "timestamp": "2026-03-15T12:28:01.838638",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": -15.26369320647791,
+              "timestamp": "2026-03-15T12:28:01.838639",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "match_type": "standalone",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "cde00629-2efd-4b2e-998e-6de34208fd47": {
+      "info": {
+        "run_id": "cde00629-2efd-4b2e-998e-6de34208fd47",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "match_2a2eab0d",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838656",
+        "end_time": "2026-03-15T12:28:01.838674",
+        "artifact_uri": "artifacts/cde00629-2efd-4b2e-998e-6de34208fd47"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "GPT-Mini",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": null,
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7485749358261009,
+              "timestamp": "2026-03-15T12:28:01.838665",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7389048045327298,
+              "timestamp": "2026-03-15T12:28:01.838667",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1500,
+              "timestamp": "2026-03-15T12:28:01.838668",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1516.0,
+              "timestamp": "2026-03-15T12:28:01.838668",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1516.736306793522,
+              "timestamp": "2026-03-15T12:28:01.838669",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1499.263693206478,
+              "timestamp": "2026-03-15T12:28:01.838670",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": 16.73630679352209,
+              "timestamp": "2026-03-15T12:28:01.838672",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": -16.73630679352209,
+              "timestamp": "2026-03-15T12:28:01.838673",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "match_type": "standalone",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "76bf3617-e7ac-4b2d-b177-c5af7fc8ba1e": {
+      "info": {
+        "run_id": "76bf3617-e7ac-4b2d-b177-c5af7fc8ba1e",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "match_f417cc0c",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838688",
+        "end_time": "2026-03-15T12:28:01.838703",
+        "artifact_uri": "artifacts/76bf3617-e7ac-4b2d-b177-c5af7fc8ba1e"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "GPT-Mini",
+          "model_b_name": "T5-Small",
+          "tournament_id": null,
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7432732719585833,
+              "timestamp": "2026-03-15T12:28:01.838695",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7133284022138568,
+              "timestamp": "2026-03-15T12:28:01.838696",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1516.736306793522,
+              "timestamp": "2026-03-15T12:28:01.838697",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1468.736306793522,
+              "timestamp": "2026-03-15T12:28:01.838698",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1530.5397822532448,
+              "timestamp": "2026-03-15T12:28:01.838699",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1454.9328313337994,
+              "timestamp": "2026-03-15T12:28:01.838700",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": 13.803475459722677,
+              "timestamp": "2026-03-15T12:28:01.838701",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": -13.803475459722677,
+              "timestamp": "2026-03-15T12:28:01.838702",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "match_type": "standalone",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "13cde56f-89e3-453d-beae-91024342fdf6": {
+      "info": {
+        "run_id": "13cde56f-89e3-453d-beae-91024342fdf6",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "match_aff91878",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838716",
+        "end_time": "2026-03-15T12:28:01.838731",
+        "artifact_uri": "artifacts/13cde56f-89e3-453d-beae-91024342fdf6"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "T5-Small",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": null,
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7495471207954064,
+              "timestamp": "2026-03-15T12:28:01.838722",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.8153672132935572,
+              "timestamp": "2026-03-15T12:28:01.838723",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1454.9328313337994,
+              "timestamp": "2026-03-15T12:28:01.838724",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1499.263693206478,
+              "timestamp": "2026-03-15T12:28:01.838725",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1440.963335800898,
+              "timestamp": "2026-03-15T12:28:01.838726",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1513.2331887393793,
+              "timestamp": "2026-03-15T12:28:01.838727",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -13.96949553290142,
+              "timestamp": "2026-03-15T12:28:01.838728",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 13.96949553290142,
+              "timestamp": "2026-03-15T12:28:01.838729",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "match_type": "standalone",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "186a5ac3-a627-4506-b4eb-fb421255eadc": {
+      "info": {
+        "run_id": "186a5ac3-a627-4506-b4eb-fb421255eadc",
+        "experiment_id": "26e11422-dc55-4fbe-b3d9-ee7874cb18c1",
+        "run_name": "custom_evaluation",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.838744",
+        "end_time": "2026-03-15T12:28:01.838755",
+        "artifact_uri": "artifacts/186a5ac3-a627-4506-b4eb-fb421255eadc"
+      },
+      "data": {
+        "params": {},
+        "metrics": {},
+        "tags": {}
+      }
+    },
+    "adf637fe-9d94-43a0-9899-a5be55cc4fb4": {
+      "info": {
+        "run_id": "adf637fe-9d94-43a0-9899-a5be55cc4fb4",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_c6c48181",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.840933",
+        "end_time": "2026-03-15T12:28:01.840958",
+        "artifact_uri": "artifacts/adf637fe-9d94-43a0-9899-a5be55cc4fb4"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "model_b_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "GPT-Mini",
+          "model_b_name": "BERT-Tiny",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7983415581534481,
+              "timestamp": "2026-03-15T12:28:01.840947",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.8051859180537708,
+              "timestamp": "2026-03-15T12:28:01.840950",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1530.5397822532448,
+              "timestamp": "2026-03-15T12:28:01.840951",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1515.263693206478,
+              "timestamp": "2026-03-15T12:28:01.840952",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1513.836745332429,
+              "timestamp": "2026-03-15T12:28:01.840953",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1531.9667301272937,
+              "timestamp": "2026-03-15T12:28:01.840954",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -16.703036920815748,
+              "timestamp": "2026-03-15T12:28:01.840955",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 16.703036920815748,
+              "timestamp": "2026-03-15T12:28:01.840956",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "f89cacbd-10c8-4a9c-acc9-a5ca17bf2635": {
+      "info": {
+        "run_id": "f89cacbd-10c8-4a9c-acc9-a5ca17bf2635",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_df90136e",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.840970",
+        "end_time": "2026-03-15T12:28:01.840989",
+        "artifact_uri": "artifacts/f89cacbd-10c8-4a9c-acc9-a5ca17bf2635"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "GPT-Mini",
+          "model_b_name": "T5-Small",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.763369168147281,
+              "timestamp": "2026-03-15T12:28:01.840978",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7494076127413838,
+              "timestamp": "2026-03-15T12:28:01.840981",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1513.836745332429,
+              "timestamp": "2026-03-15T12:28:01.840982",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1440.963335800898,
+              "timestamp": "2026-03-15T12:28:01.840983",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1526.5291632944352,
+              "timestamp": "2026-03-15T12:28:01.840984",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1428.2709178388918,
+              "timestamp": "2026-03-15T12:28:01.840985",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": 12.692417962006175,
+              "timestamp": "2026-03-15T12:28:01.840986",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": -12.692417962006175,
+              "timestamp": "2026-03-15T12:28:01.840987",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "c2cc696b-c823-4748-970e-03ee86cd4eb3": {
+      "info": {
+        "run_id": "c2cc696b-c823-4748-970e-03ee86cd4eb3",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_950506b4",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.840998",
+        "end_time": "2026-03-15T12:28:01.841013",
+        "artifact_uri": "artifacts/c2cc696b-c823-4748-970e-03ee86cd4eb3"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "03d1a9b2-2c09-453e-8060-eb451adff0d6",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "GPT-Mini",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7424592080520607,
+              "timestamp": "2026-03-15T12:28:01.841004",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7444286309022441,
+              "timestamp": "2026-03-15T12:28:01.841006",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1526.5291632944352,
+              "timestamp": "2026-03-15T12:28:01.841006",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1513.2331887393793,
+              "timestamp": "2026-03-15T12:28:01.841007",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1509.91715977048,
+              "timestamp": "2026-03-15T12:28:01.841008",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1529.8451922633344,
+              "timestamp": "2026-03-15T12:28:01.841009",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -16.61200352395508,
+              "timestamp": "2026-03-15T12:28:01.841010",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 16.61200352395508,
+              "timestamp": "2026-03-15T12:28:01.841011",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "8df6536a-2da2-469b-82d3-01c446618a30": {
+      "info": {
+        "run_id": "8df6536a-2da2-469b-82d3-01c446618a30",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_3ebfe0c1",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.841020",
+        "end_time": "2026-03-15T12:28:01.841034",
+        "artifact_uri": "artifacts/8df6536a-2da2-469b-82d3-01c446618a30"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "model_b_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "BERT-Tiny",
+          "model_b_name": "T5-Small",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7953580438823095,
+              "timestamp": "2026-03-15T12:28:01.841026",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7024111789919169,
+              "timestamp": "2026-03-15T12:28:01.841027",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1531.9667301272937,
+              "timestamp": "2026-03-15T12:28:01.841028",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1428.2709178388918,
+              "timestamp": "2026-03-15T12:28:01.841029",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1543.3282794992692,
+              "timestamp": "2026-03-15T12:28:01.841030",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1416.9093684669162,
+              "timestamp": "2026-03-15T12:28:01.841031",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": 11.36154937197557,
+              "timestamp": "2026-03-15T12:28:01.841032",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": -11.36154937197557,
+              "timestamp": "2026-03-15T12:28:01.841033",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "7869f1ff-0c5c-4829-8d5a-98ab392c215b": {
+      "info": {
+        "run_id": "7869f1ff-0c5c-4829-8d5a-98ab392c215b",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_661efc8f",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.841041",
+        "end_time": "2026-03-15T12:28:01.841056",
+        "artifact_uri": "artifacts/7869f1ff-0c5c-4829-8d5a-98ab392c215b"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "8ac208be-3bd3-414b-a65c-11c9d8e13648",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "BERT-Tiny",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7538789089040002,
+              "timestamp": "2026-03-15T12:28:01.841047",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.8058983482089361,
+              "timestamp": "2026-03-15T12:28:01.841048",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1543.3282794992692,
+              "timestamp": "2026-03-15T12:28:01.841049",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1529.8451922633344,
+              "timestamp": "2026-03-15T12:28:01.841050",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1526.7076719031402,
+              "timestamp": "2026-03-15T12:28:01.841051",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1546.4657998594635,
+              "timestamp": "2026-03-15T12:28:01.841052",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -16.620607596129048,
+              "timestamp": "2026-03-15T12:28:01.841053",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 16.620607596129048,
+              "timestamp": "2026-03-15T12:28:01.841054",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    },
+    "f6ddde28-7036-4619-bf0b-beb0601f444a": {
+      "info": {
+        "run_id": "f6ddde28-7036-4619-bf0b-beb0601f444a",
+        "experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3",
+        "run_name": "match_44deb817",
+        "status": "FINISHED",
+        "start_time": "2026-03-15T12:28:01.841062",
+        "end_time": "2026-03-15T12:28:01.841075",
+        "artifact_uri": "artifacts/f6ddde28-7036-4619-bf0b-beb0601f444a"
+      },
+      "data": {
+        "params": {
+          "model_a_id": "42e325e4-dc3b-4858-a2ad-933f7f9c0f6d",
+          "model_b_id": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "arena_id": "0f1a9666-5936-4043-95b9-99cf1974da0f",
+          "arena_name": "Accuracy Arena",
+          "model_a_name": "T5-Small",
+          "model_b_name": "RoBERTa-Base",
+          "tournament_id": "cc62e85a-091d-49af-8472-c9e019ca4aec",
+          "season_id": null
+        },
+        "metrics": {
+          "model_a_score": [
+            {
+              "value": 0.7547712769999608,
+              "timestamp": "2026-03-15T12:28:01.841067",
+              "step": 0
+            }
+          ],
+          "model_b_score": [
+            {
+              "value": 0.7984785267610748,
+              "timestamp": "2026-03-15T12:28:01.841068",
+              "step": 0
+            }
+          ],
+          "model_a_rating_before": [
+            {
+              "value": 1416.9093684669162,
+              "timestamp": "2026-03-15T12:28:01.841069",
+              "step": 0
+            }
+          ],
+          "model_b_rating_before": [
+            {
+              "value": 1546.4657998594635,
+              "timestamp": "2026-03-15T12:28:01.841070",
+              "step": 0
+            }
+          ],
+          "model_a_rating_after": [
+            {
+              "value": 1406.6136873480116,
+              "timestamp": "2026-03-15T12:28:01.841071",
+              "step": 0
+            }
+          ],
+          "model_b_rating_after": [
+            {
+              "value": 1556.7614809783681,
+              "timestamp": "2026-03-15T12:28:01.841072",
+              "step": 0
+            }
+          ],
+          "model_a_rating_change": [
+            {
+              "value": -10.295681118904668,
+              "timestamp": "2026-03-15T12:28:01.841073",
+              "step": 0
+            }
+          ],
+          "model_b_rating_change": [
+            {
+              "value": 10.295681118904668,
+              "timestamp": "2026-03-15T12:28:01.841074",
+              "step": 0
+            }
+          ]
+        },
+        "tags": {
+          "winner": "eb56930c-50c7-47d2-ab54-04910a5226de",
+          "match_type": "tournament",
+          "arena_type": "BenchmarkArena"
+        }
+      }
+    }
+  },
+  "active_experiment_id": "90fb8b94-74fc-4e64-85f2-6ad8ce8bbdd3"
+}

@@ -2,6 +2,29 @@
 
 A comprehensive Python framework for managing competitive tournaments between AI models with ELO ratings, multiple arenas, seasons, and leaderboards.
 
+## 🆕 MLflow Integration
+
+**Garden v0.2.0** now includes MLflow-compatible tracking and custom metrics APIs! Use familiar MLflow patterns for experiment tracking while leveraging Garden's competitive evaluation features.
+
+```python
+from garden import Garden, tracking, metrics
+
+# Enable MLflow-style tracking
+garden = Garden(enable_mlflow_tracking=True)
+
+# Use MLflow-compatible API
+tracking.set_experiment("Model Comparison")
+with tracking.start_run():
+    tracking.log_params({"model": "GPT-Mini"})
+    tracking.log_metrics({"accuracy": 0.95})
+
+# Register custom metrics
+garden.register_metric(metrics.elo_rating())
+garden.register_metric(metrics.accuracy())
+```
+
+📖 **[Full MLflow Integration Guide →](MLFLOW_INTEGRATION.md)**
+
 ## Overview
 
 **Garden** is a model operations (ModelOps) framework that enables you to:
@@ -13,6 +36,8 @@ A comprehensive Python framework for managing competitive tournaments between AI
 - **Manage seasons** across multiple arenas
 - **Generate leaderboards** with comprehensive statistics
 - **Persist state** for long-term tracking
+- **🆕 MLflow-compatible tracking** for experiments and runs
+- **🆕 Custom metrics** with EvaluationMetric API
 
 ## Architecture
 
@@ -26,12 +51,17 @@ A comprehensive Python framework for managing competitive tournaments between AI
 6. **Season** - Long-term tracking across multiple arenas
 7. **Leaderboard** - Rankings and statistics display
 8. **ELO System** - Rating calculation engine
+9. **🆕 Tracking** - MLflow-compatible experiment tracking
+10. **🆕 Metrics** - Custom evaluation metrics system
 
 ## Installation
 
 ```bash
-# No external dependencies required - uses Python standard library
-cd /Users/jg/mind
+# Install dependencies (pandas required for metrics)
+pip install -r requirements.txt
+
+# Or install minimal dependencies
+pip install pandas numpy
 ```
 
 ## Quick Start
@@ -41,8 +71,13 @@ cd /Users/jg/mind
 ```python
 from garden import Garden, TournamentType
 
-# Initialize Garden
-garden = Garden(name="My Model Garden", elo_k_factor=32, initial_rating=1500)
+# Initialize Garden (with optional MLflow tracking)
+garden = Garden(
+    name="My Model Garden", 
+    elo_k_factor=32, 
+    initial_rating=1500,
+    enable_mlflow_tracking=True  # Enable MLflow-style tracking
+)
 
 # Register models
 model_a = garden.register_model(name="GPT-Mini", version="1.0")
@@ -519,8 +554,68 @@ Extend the `Tournament` class to implement new tournament formats.
 - Ensure models have participated in matches
 - Call `garden.update_leaderboard()` to refresh
 
+## MLflow Integration Features
+
+Garden now supports MLflow-compatible APIs:
+
+### Tracking API
+
+```python
+from garden import tracking
+
+# Experiment management
+tracking.create_experiment("Model Comparison")
+tracking.set_experiment("Model Comparison")
+
+# Run tracking
+with tracking.start_run(run_name="baseline"):
+    tracking.log_params({"model": "GPT", "size": "mini"})
+    tracking.log_metrics({"accuracy": 0.95, "latency": 100})
+    tracking.set_tags({"env": "prod"})
+
+# Search runs
+runs = tracking.search_runs()
+```
+
+### Custom Metrics
+
+```python
+from garden import metrics
+import pandas as pd
+
+# Use built-in metrics
+elo_metric = metrics.elo_rating(k_factor=32)
+acc_metric = metrics.accuracy()
+latency_metric = metrics.latency()
+
+# Register with Garden
+garden.register_metric(elo_metric)
+garden.register_metric(acc_metric)
+
+# Create custom metrics
+def custom_fn(predictions, targets, **kwargs):
+    return {"score": (predictions == targets).mean()}
+
+custom_metric = metrics.make_metric(
+    name="my_metric",
+    eval_fn=custom_fn,
+    greater_is_better=True
+)
+```
+
+### Automatic Match Tracking
+
+When enabled, every match is automatically logged with:
+- Parameters: model IDs, names, arena info
+- Metrics: scores, ratings, rating changes
+- Tags: winner, match type, arena type
+
+See **[MLFLOW_INTEGRATION.md](MLFLOW_INTEGRATION.md)** for complete documentation.
+
 ## Future Enhancements
 
+- [x] MLflow-compatible tracking API
+- [x] Custom metrics system
 - [ ] Double elimination tournaments
 - [ ] Team-based competitions
 - [ ] Time-series rating visualization
@@ -529,6 +624,7 @@ Extend the `Tournament` class to implement new tournament formats.
 - [ ] REST API
 - [ ] Match replay and analysis
 - [ ] Automated scheduling
+- [ ] MLflow UI integration
 
 ## Contributing
 
@@ -547,3 +643,5 @@ MIT License
 For issues and questions, please refer to the example files:
 - `garden_example.py` - Complete working example
 - `garden_cli.py` - Command-line interface usage
+- `examples/mlflow_style_tracking.py` - MLflow integration example
+- `MLFLOW_INTEGRATION.md` - Complete MLflow guide

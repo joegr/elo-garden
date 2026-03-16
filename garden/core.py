@@ -10,6 +10,9 @@ from .tournament import Tournament, TournamentType, TournamentStatus
 from .season import Season, SeasonStatus
 from .leaderboard import Leaderboard
 from .elo import ELOSystem
+from . import tracking
+from .metrics import MetricsLogger, EvaluationMetric
+import mlflow
 
 
 class Garden:
@@ -18,11 +21,14 @@ class Garden:
         name: str = "Garden",
         elo_k_factor: int = 32,
         initial_rating: float = 1500,
-        data_dir: str = "garden_data"
+        data_dir: str = "garden_data",
+        tracking_uri: Optional[str] = None,
+        enable_mlflow_tracking: bool = True
     ):
         self.name = name
         self.elo_system = ELOSystem(k_factor=elo_k_factor, initial_rating=initial_rating)
         self.data_dir = data_dir
+        self.enable_mlflow_tracking = enable_mlflow_tracking
         
         self.models: Dict[str, Model] = {}
         self.arenas: Dict[str, Arena] = {}
@@ -34,15 +40,25 @@ class Garden:
         self.created_at = datetime.now()
         
         os.makedirs(data_dir, exist_ok=True)
+        
+        if self.enable_mlflow_tracking:
+            tracking_path = tracking_uri or os.path.join(data_dir, "mlruns")
+            mlflow.set_tracking_uri(tracking_path)
+            self.tracking_uri = tracking_path
+            self.metrics_logger = MetricsLogger()
+        else:
+            self.tracking_uri = None
+            self.metrics_logger = None
     
     def register_model(
         self,
         name: str,
         model_id: Optional[str] = None,
         version: str = "1.0",
-        metadata: Optional[Dict[str, Any]] = None
+        metadata: Optional[Dict[str, Any]] = None,
+        ontology: Optional[Any] = None
     ) -> Model:
-        model = Model(name, model_id, version, metadata)
+        model = Model(name, model_id, version, metadata, ontology)
         self.models[model.model_id] = model
         return model
     
@@ -131,6 +147,13 @@ class Garden:
         self.matches[match.match_id] = match
         match.start()
         
+        if self.enable_mlflow_tracking:
+            experiment_name = f"arena_{self.arenas[arena_id].name}"
+            if tournament_id:
+                experiment_name = f"tournament_{self.tournaments[tournament_id].name}"
+            mlflow.set_experiment(experiment_name)
+            mlflow.start_run(run_name=f"match_{match.match_id[:8]}")
+        
         model_a = self.models[model_a_id]
         model_b = self.models[model_b_id]
         arena = self.arenas[arena_id]
@@ -198,6 +221,37 @@ class Garden:
         
         arena.add_match(match.match_id)
         
+        if self.enable_mlflow_tracking:
+            mlflow.log_params({
+                'model_a_id': model_a_id,
+                'model_b_id': model_b_id,
+                'arena_id': arena_id,
+                'arena_name': arena.name,
+                'model_a_name': model_a.name,
+                'model_b_name': model_b.name,
+                'tournament_id': tournament_id or '',
+                'season_id': season_id or ''
+            })
+            
+            mlflow.log_metrics({
+                'model_a_score': scores['model_a_score'],
+                'model_b_score': scores['model_b_score'],
+                'model_a_rating_before': rating_a,
+                'model_b_rating_before': rating_b,
+                'model_a_rating_after': new_rating_a,
+                'model_b_rating_after': new_rating_b,
+                'model_a_rating_change': new_rating_a - rating_a,
+                'model_b_rating_change': new_rating_b - rating_b
+            })
+            
+            mlflow.set_tags({
+                'winner': winner_id or 'draw',
+                'match_type': 'tournament' if tournament_id else 'standalone',
+                'arena_type': arena.__class__.__name__
+            })
+            
+            mlflow.end_run()
+        
         if tournament_id and tournament_id in self.tournaments:
             tournament = self.tournaments[tournament_id]
             tournament.add_match(match.match_id)
@@ -245,21 +299,26 @@ class Garden:
     def create_leaderboard(
         self,
         name: str,
+        version: str,
         arena_id: Optional[str] = None,
         season_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None
-    ) -> Leaderboard:
-        leaderboard = Leaderboard(
+        metadata: Optional[Dict[str, Any]] = None,
+        ontology: Optional[Dict[str, Any]] = None
+    ) -> Model:
+        model = Model(
             name=name,
-            arena_id=arena_id,
-            season_id=season_id,
-            metadata=metadata
+            model_id=model_id,
+            version=version,
+            metadata=metadata,
+            ontology=ontology
         )
-        self.leaderboards[leaderboard.leaderboard_id] = leaderboard
+        self.models[model_id] = model
         
-        self.update_leaderboard(leaderboard.leaderboard_id)
+        if arena_id and arena_id in self.arenas:
+            self.arenas[arena_id].add_model(model_id)
         
-        return leaderboard
+        if season_id and season_id in self.seasons:
+            self.seasons[season_id].add_model(model_id)
     
     def update_leaderboard(self, leaderboard_id: str):
         if leaderboard_id not in self.leaderboards:
@@ -311,6 +370,32 @@ class Garden:
         
         print(f"Garden state saved to {filepath}")
     
+    def register_metric(self, metric: EvaluationMetric):
+        if self.metrics_logger:
+            self.metrics_logger.register_metric(metric)
+    
+    def evaluate_with_metric(
+        self,
+        metric_name: str,
+        model_id: str,
+        data: Any,
+        **kwargs
+    ) -> Optional[Any]:
+        if not self.metrics_logger:
+            return None
+        
+        import pandas as pd
+        if not isinstance(data, pd.Series):
+            data = pd.Series(data)
+        
+        return self.metrics_logger.evaluate(metric_name, data, **kwargs)
+    
+    def get_tracking_uri(self) -> Optional[str]:
+        return self.tracking_uri
+    
+    def get_metrics_logger(self) -> Optional[MetricsLogger]:
+        return self.metrics_logger
+    
     def get_stats(self) -> Dict[str, Any]:
         return {
             'total_models': len(self.models),
@@ -322,6 +407,103 @@ class Garden:
             'active_tournaments': sum(1 for t in self.tournaments.values() if t.status == TournamentStatus.IN_PROGRESS),
             'active_seasons': sum(1 for s in self.seasons.values() if s.status == SeasonStatus.ACTIVE)
         }
+    
+    def get_models_by_elo_range(
+        self,
+        arena_id: Optional[str] = None,
+        min_rating: Optional[float] = None,
+        max_rating: Optional[float] = None
+    ) -> List[Model]:
+        """Get models within a specific ELO rating range"""
+        results = []
+        
+        for model in self.models.values():
+            if arena_id:
+                rating = model.get_rating(arena_id, self.elo_system.initial_rating)
+            else:
+                ratings = list(model.ratings.values())
+                rating = sum(ratings) / len(ratings) if ratings else self.elo_system.initial_rating
+            
+            if min_rating is not None and rating < min_rating:
+                continue
+            if max_rating is not None and rating > max_rating:
+                continue
+            
+            results.append(model)
+        
+        if arena_id:
+            results.sort(key=lambda m: m.get_rating(arena_id, self.elo_system.initial_rating), reverse=True)
+        else:
+            results.sort(key=lambda m: (sum(m.ratings.values()) / len(m.ratings.values()) if m.ratings.values() else self.elo_system.initial_rating), reverse=True)
+        
+        return results
+    
+    def find_best_matchup(
+        self,
+        model_id: str,
+        arena_id: Optional[str] = None,
+        rating_tolerance: float = 200,
+        min_matches: int = 0
+    ) -> Optional[Model]:
+        """Find the best opponent for a given model based on ELO proximity"""
+        if model_id not in self.models:
+            return None
+        
+        target_model = self.models[model_id]
+        target_rating = target_model.get_rating(
+            arena_id if arena_id else list(target_model.ratings.keys())[0] if target_model.ratings else None,
+            self.elo_system.initial_rating
+        )
+        
+        candidates = []
+        for candidate in self.models.values():
+            if candidate.model_id == model_id:
+                continue
+            
+            if candidate.stats['total_matches'] < min_matches:
+                continue
+            
+            cand_rating = candidate.get_rating(
+                arena_id if arena_id else list(candidate.ratings.keys())[0] if candidate.ratings else None,
+                self.elo_system.initial_rating
+            )
+            
+            rating_diff = abs(target_rating - cand_rating)
+            if rating_diff <= rating_tolerance:
+                candidates.append((candidate, rating_diff))
+        
+        if not candidates:
+            return None
+        
+        candidates.sort(key=lambda x: x[1])
+        return candidates[0][0]
+    
+    def get_elo_leaderboard(
+        self,
+        arena_id: Optional[str] = None,
+        top_n: int = 10
+    ) -> List[Dict[str, Any]]:
+        """Get top models by ELO rating"""
+        model_ratings = []
+        
+        for model in self.models.values():
+            if arena_id:
+                rating = model.get_rating(arena_id, self.elo_system.initial_rating)
+            else:
+                ratings = list(model.ratings.values())
+                rating = sum(ratings) / len(ratings) if ratings else self.elo_system.initial_rating
+            
+            model_ratings.append({
+                'model_id': model.model_id,
+                'name': model.name,
+                'version': model.version,
+                'rating': rating,
+                'total_matches': model.stats['total_matches'],
+                'win_rate': model.stats['win_rate']
+            })
+        
+        model_ratings.sort(key=lambda x: x['rating'], reverse=True)
+        return model_ratings[:top_n]
     
     def __repr__(self) -> str:
         stats = self.get_stats()
