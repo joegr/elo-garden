@@ -35,8 +35,7 @@ class TrainingConfig:
         gradient_clip=1.0,
         save_every=1000,
         eval_every=500,
-        checkpoint_dir='checkpoints',
-        log_dir='logs'
+        checkpoint_dir='checkpoints'
     ):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
@@ -46,4 +45,3 @@ class TrainingConfig:
         self.save_every = save_every
         self.eval_every = eval_every
         self.checkpoint_dir = checkpoint_dir
-        self.log_dir = log_dir

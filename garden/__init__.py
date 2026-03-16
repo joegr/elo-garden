@@ -6,7 +6,6 @@ from .tournament import Tournament, TournamentType
 from .season import Season
 from .leaderboard import Leaderboard
 from .elo import ELOSystem
-from . import tracking
 from . import metrics
 from . import ontology
 
@@ -23,7 +22,6 @@ __all__ = [
     "Season",
     "Leaderboard",
     "ELOSystem",
-    "tracking",
     "metrics",
     "ontology",
 ]

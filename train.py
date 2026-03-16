@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.tensorboard import SummaryWriter
 import os
 from tqdm import tqdm
 import math
+import mlflow
 
 from model import TransformerLM
 from config import ModelConfig, TrainingConfig
@@ -13,12 +13,13 @@ from dataset import create_dataloaders
 
 
 class Trainer:
-    def __init__(self, model, train_loader, val_loader, config, tokenizer):
+    def __init__(self, model, train_loader, val_loader, config, tokenizer, model_config=None):
         self.model = model
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.config = config
         self.tokenizer = tokenizer
+        self.model_config = model_config
         
         self.optimizer = optim.AdamW(
             model.parameters(),
@@ -30,11 +31,10 @@ class Trainer:
         self.criterion = nn.CrossEntropyLoss(ignore_index=tokenizer.token_to_id['<PAD>'])
         
         os.makedirs(config.checkpoint_dir, exist_ok=True)
-        os.makedirs(config.log_dir, exist_ok=True)
-        self.writer = SummaryWriter(config.log_dir)
         
         self.global_step = 0
         self.best_val_loss = float('inf')
+        self.mlflow_run_id = None
     
     def get_lr(self, step):
         d_model = self.model.config.d_model
@@ -75,9 +75,12 @@ class Trainer:
                 'ppl': f'{math.exp(loss.item()):.2f}'
             })
             
-            self.writer.add_scalar('train/loss', loss.item(), self.global_step)
-            self.writer.add_scalar('train/learning_rate', lr, self.global_step)
-            self.writer.add_scalar('train/perplexity', math.exp(loss.item()), self.global_step)
+            if self.mlflow_run_id:
+                mlflow.log_metrics({
+                    'train_loss': loss.item(),
+                    'learning_rate': lr,
+                    'train_perplexity': math.exp(loss.item()),
+                }, step=self.global_step)
             
             if self.global_step % self.config.eval_every == 0:
                 val_loss = self.validate()
@@ -105,8 +108,11 @@ class Trainer:
         avg_loss = total_loss / len(self.val_loader)
         perplexity = math.exp(avg_loss)
         
-        self.writer.add_scalar('val/loss', avg_loss, self.global_step)
-        self.writer.add_scalar('val/perplexity', perplexity, self.global_step)
+        if self.mlflow_run_id:
+            mlflow.log_metrics({
+                'val_loss': avg_loss,
+                'val_perplexity': perplexity,
+            }, step=self.global_step)
         
         print(f'\nValidation Loss: {avg_loss:.4f}, Perplexity: {perplexity:.2f}')
         
@@ -137,17 +143,54 @@ class Trainer:
         print(f'Checkpoint loaded from {filepath}')
     
     def train(self):
+        total_params = sum(p.numel() for p in self.model.parameters())
         print(f'Training on device: {self.model.config.device}')
-        print(f'Total parameters: {sum(p.numel() for p in self.model.parameters()):,}')
+        print(f'Total parameters: {total_params:,}')
         
-        for epoch in range(self.config.num_epochs):
-            train_loss = self.train_epoch(epoch)
-            val_loss = self.validate()
+        mlflow.set_tracking_uri('./mlruns')
+        mlflow.set_experiment('training')
+        
+        with mlflow.start_run(run_name=f'transformer_{self.model.config.d_model}d_{self.model.config.n_layers}L') as run:
+            self.mlflow_run_id = run.info.run_id
             
-            print(f'Epoch {epoch}: Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}')
+            # Log all hyperparameters once at the start
+            mlflow.log_params({
+                'vocab_size': self.model.config.vocab_size,
+                'd_model': self.model.config.d_model,
+                'n_heads': self.model.config.n_heads,
+                'n_layers': self.model.config.n_layers,
+                'd_ff': self.model.config.d_ff,
+                'max_seq_len': self.model.config.max_seq_len,
+                'dropout': self.model.config.dropout,
+                'batch_size': self.config.batch_size,
+                'learning_rate': self.config.learning_rate,
+                'num_epochs': self.config.num_epochs,
+                'warmup_steps': self.config.warmup_steps,
+                'gradient_clip': self.config.gradient_clip,
+                'total_parameters': total_params,
+            })
+            
+            for epoch in range(self.config.num_epochs):
+                train_loss = self.train_epoch(epoch)
+                val_loss = self.validate()
+                
+                mlflow.log_metrics({
+                    'epoch_train_loss': train_loss,
+                    'epoch_val_loss': val_loss,
+                    'epoch_val_perplexity': math.exp(val_loss),
+                }, step=epoch)
+                
+                print(f'Epoch {epoch}: Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}')
+            
+            # Log best checkpoint as artifact
+            best_path = os.path.join(self.config.checkpoint_dir, 'best_model.pt')
+            if os.path.exists(best_path):
+                mlflow.log_artifact(best_path)
+            
+            mlflow.log_metric('best_val_loss', self.best_val_loss)
+            mlflow.set_tag('model_type', 'TransformerLM')
         
-        self.writer.close()
-        print('Training complete!')
+        print(f'Training complete! MLflow run ID: {self.mlflow_run_id}')
 
 
 def main():
@@ -208,7 +251,7 @@ def main():
     print("Initializing model...")
     model = TransformerLM(model_config).to(model_config.device)
     
-    trainer = Trainer(model, train_loader, val_loader, training_config, tokenizer)
+    trainer = Trainer(model, train_loader, val_loader, training_config, tokenizer, model_config)
     trainer.train()
 
 
